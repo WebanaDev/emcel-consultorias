@@ -1,0 +1,46 @@
+# === AMBIENTES VIRTUAIS E DEPENDÊNCIAS ===
+venv/
+env/
+ENV/
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# === SISTEMA OPERACIONAL ===
+.DS_Store
+Thumbs.db
+
+# === EDITORES DE TEXTO ===
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# === LOGS E TEMPORÁRIOS ===
+*.log
+*.tmp
+*.bak
+
+# === ARQUIVOS DE CONFIGURAÇÃO PRIVADOS ===
+*.env
+.env.*
+*.secret
+secrets.json
+
+# === NODE E WEB (caso use mais tarde) ===
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+.pnpm-debug.log
+
+# === GITHUB PAGES/STATIC ===
+*.zip
+.cache/
+*.map
