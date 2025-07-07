@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulado 100% Offline - Concurso PGR Angola</title>
+  <style>
+    /* Estilos completos para funcionamento 100% offline */
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+      background-color: #f3f4f6;
+      /* cinza claro */
+      color: #1f2937;
+      /* cinza escuro */
+      margin: 0;
+      padding: 0;
+    }
+    
+    .container {
+      max-width: 896px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 1rem;
+    }
+    
+    @media (min-width: 768px) {
+      .container {
+        padding: 2rem;
+      }
+    }
+    
+    .card {
+      background-color: #ffffff;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+    
+    .hidden {
+      display: none;
+    }
+    
+    .text-center {
+      text-align: center;
+    }
+    
+    .mb-8 {
+      margin-bottom: 2rem;
+    }
+    
+    .mb-6 {
+      margin-bottom: 1.5rem;
+    }
+    
+    .mb-4 {
+      margin-bottom: 1rem;
+    }
+    
+    .mb-2 {
+      margin-bottom: 0.5rem;
+    }
+    
+    .mt-8 {
+      margin-top: 2rem;
+    }
+    
+    .my-4 {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+    
+    h1 {
+      font-size: 1.875rem;
+      /* 30px */
+      line-height: 2.25rem;
+      /* 36px */
+      font-weight: 700;
+      color: #111827;
+    }
+    
+    p {
+      margin: 0;
+    }
+    
+    .button {
+      font-weight: 700;
+      padding: 0.75rem 2rem;
+      border-radius: 0.5rem;
+      color: white;
+      transition: background-color 0.3s;
+      cursor: pointer;
+      border: none;
+      width: 100%;
+    }
+    
+    @media (min-width: 768px) {
+      .button {
+        width: 48%;
+      }
+    }
+    
+    .button-primary {
+      background-color: #2563eb;
+    }
+    
+    .button-primary:hover {
+      background-color: #1d4ed8;
+    }
+    
+    .button-green {
+      background-color: #22c55e;
+    }
+    
+    .button-green:hover {
+      background-color: #16a34a;
+    }
+    
+    .button-red {
+      background-color: #ef4444;
+    }
+    
+    .button-red:hover {
+      background-color: #dc2626;
+    }
+    
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    @media (min-width: 768px) {
+      .button-container {
+        flex-direction: row;
+        justify-content: center;
+      }
+    }
+    
+    /* ESTILOS DA BARRA DE PROGRESSO */
+    .progress-bar-container {
+      width: 100%;
+      background-color: #e5e7eb;
+      /* bg-gray-200 */
+      border-radius: 9999px;
+      /* rounded-full */
+      height: 0.625rem;
+      /* h-2.5 */
+      overflow: hidden;
+      /* Garante que a barra interna não transborde */
+    }
+    
+    .progress-bar-inner {
+      background-color: #2563eb;
+      /* bg-blue-600 */
+      height: 100%;
+      border-radius: 9999px;
+      /* rounded-full */
+      transition: width 0.4s ease-in-out;
+      /* Animação suave */
+    }
+    
+    /* FIM DOS ESTILOS DA BARRA DE PROGRESSO */
+    
+    .grid {
+      display: grid;
+      gap: 1rem;
+    }
+    
+    @media (min-width: 768px) {
+      .grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    
+    .detailed-result-card {
+      background-color: #f9fafb;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      border: 1px solid #e5e7eb;
+    }
+    
+    a{
+      margin: auto;
+    }
+    .minha-foto {
+      margin: auto;
+      width: 200px;
+      height: 200px;
+      margin-top: 10px;
+      box-shadow: 5px 8px 10px #202020;
+      border-radius: 10px;
+      background: url("img/fotodeEmanuelVenancio.png");
+      background-size: cover;
+    }
+  </style>
+</head>
+
+<body>
+  
+  <div class="container">
+    <header class="text-center mb-8">
+      <h1>Teste Simulado 100% Offline: PGR Angola</h1>
+      <a href="https://webanadev.github.io/emcel-consultorias"><em>By: Emanuel Venâncio</em></a>
+      <hr />
+      <div class="minha-foto">
+        
+      </div>
+      <p style="color: #4b5563; margin-top: 0.5rem;">50 Perguntas | Avaliação de 0 a 20 valores</p>
+    </header>
+    
+    <main id="quiz-container" class="card">
+      <!-- As perguntas serão inseridas aqui pelo JavaScript -->
+    </main>
+    
+    <div id="results-container" class="hidden card mt-8 text-center">
+      <h2 style="font-size: 1.875rem; font-weight: 700; color: #111827;" class="mb-2">Resultados Finais</h2>
+      
+      <div id="final-grade" style="font-size: 3.75rem; font-weight: 700; color: #2563eb;" class="my-4"></div>
+      <div id="total-percentage" style="font-size: 1.5rem; color: #4b5563; font-weight: 500;" class="mb-6"></div>
+      
+      <div id="detailed-results" class="grid grid-cols-2 mt-8" style="text-align: left;">
+        <!-- Resultados detalhados por categoria -->
+      </div>
+      <button onclick="restartQuiz()" class="button button-primary mt-8" style="width: auto; display: inline-block;">
+        Tentar Novamente
+      </button>
+    </div>
+  </div>
+  
+  <script>
+    const quizData = [
+    {
+      section: "Direito Constitucional e Organização do Estado",
+      questions: [
+        { question: "A República de Angola adota como forma de governo a República Presidencialista.", answer: true },
+        { question: "O mandato do Presidente da República de Angola tem a duração de sete anos, podendo ser reeleito para um segundo mandato.", answer: false },
+        { question: "A iniciativa de revisão constitucional pode pertencer tanto ao Presidente da República como a um terço dos Deputados da Assembleia Nacional.", answer: true },
+        { question: "O 'habeas corpus' é uma garantia fundamental que visa proteger a liberdade de imprensa.", answer: false },
+        { question: "Os Símbolos Nacionais da República de Angola são a Bandeira Nacional, a Insígnia e o Hino Nacional.", answer: true },
+        { question: "O poder judicial em Angola é independente e está sujeito apenas à Constituição e à lei.", answer: true },
+        { question: "O Provedor de Justiça é um órgão independente que tem como função a defesa dos direitos, liberdades e garantias dos cidadãos.", answer: true },
+        { question: "A organização do poder tradicional é reconhecida pela Constituição Angolana como uma das formas de poder do Estado.", answer: false },
+        { question: "A nacionalidade angolana de origem só pode ser adquirida por filhos de pai ou mãe de nacionalidade angolana, nascidos em Angola.", answer: false },
+        { question: "O estado de sítio ou o estado de emergência podem ser declarados pelo Presidente da República, mas necessitam de autorização da Assembleia Nacional.", answer: true },
+      ]
+    },
+    {
+      section: "Ministério Público e Legislação da PGR",
+      questions: [
+        { question: "O Ministério Público é hierarquicamente subordinado ao Ministro da Justiça.", answer: false },
+        { question: "Compete ao Ministério Público exercer o patrocínio judiciário dos trabalhadores e suas famílias em processos laborais.", answer: true },
+        { question: "O Procurador-Geral da República é nomeado pelo Presidente da República, após auscultação do Conselho Superior da Magistratura do Ministério Público.", answer: true },
+        { question: "Os magistrados do Ministério Público são nomeados vitaliciamente, não podendo ser transferidos ou promovidos sem o seu consentimento.", answer: false },
+        { question: "O MP tem legitimidade para conduzir a instrução preparatória dos processos-crime.", answer: true },
+        { question: "A Procuradoria-Geral da República é o órgão superior do Ministério Público.", answer: true },
+        { question: "A autonomia do Ministério Público significa que os seus magistrados atuam sem qualquer subordinação hierárquica.", answer: false },
+        { question: "O MP deve defender a legalidade democrática, representando o Estado e os interesses que a lei determinar.", answer: true },
+        { question: "Qualquer pessoa pode denunciar um crime ao Ministério Público, sendo a denúncia sempre obrigatória.", answer: false },
+        { question: "O Vice-Procurador-Geral da República substitui o Procurador-Geral nas suas ausências e impedimentos.", answer: true },
+      ]
+    },
+    {
+      section: "Direito Penal e Processual Penal",
+      questions: [
+        { question: "O dolo é a mera vontade de praticar o facto, mesmo que o agente não conheça a sua ilicitude.", answer: false },
+        { question: "A legítima defesa é uma causa de exclusão da ilicitude, que permite repelir uma agressão atual e ilícita.", answer: true },
+        { question: "O Código Penal Angolano não prevê a punição de pessoas coletivas (empresas).", answer: false },
+        { question: "O prazo máximo da prisão preventiva, incluindo as suas prorrogações, não pode exceder 3 anos.", answer: false },
+        { question: "O princípio 'in dubio pro reo' estabelece que, em caso de dúvida, o juiz deve decidir a favor do arguido.", answer: true },
+        { question: "A busca domiciliária só pode ser realizada com mandado do juiz e, em regra, durante o dia.", answer: true },
+        { question: "O crime de peculato é praticado por qualquer cidadão que se aproprie de bens alheios.", answer: false },
+        { question: "A queixa é a manifestação de vontade da vítima de que seja instaurado um processo penal por um crime semipúblico ou particular.", answer: true },
+        { question: "A audiência de julgamento é, em regra, pública, visando garantir a transparência da justiça.", answer: true },
+        { question: "A reincidência é uma circunstância agravante que ocorre quando o agente comete um novo crime depois de ter sido condenado por um crime anterior.", answer: true },
+      ]
+    },
+    {
+      section: "Direito Administrativo e Ética Profissional",
+      questions: [
+        { question: "O princípio da igualdade na Administração Pública impõe que todos os cidadãos sejam tratados de forma absolutamente idêntica em todas as situações.", answer: false },
+        { question: "Um regulamento administrativo é uma norma jurídica geral e abstrata, emitida por um órgão da Administração no exercício do poder administrativo.", answer: true },
+        { question: "O dever de zelo significa que o funcionário público deve conhecer todas as leis e regulamentos aplicáveis ao seu serviço.", answer: false },
+        { question: "O contrato administrativo é um acordo de vontades entre a Administração Pública e um particular, regido por um regime de direito público.", answer: true },
+        { question: "A responsabilidade civil do Estado por danos causados aos particulares é sempre objetiva, não dependendo de culpa.", answer: false },
+        { question: "O dever de lealdade impõe ao funcionário público a subordinação total aos seus superiores, mesmo perante ordens ilegais.", answer: false },
+        { question: "O recurso hierárquico é a reclamação de um ato administrativo dirigida ao autor do próprio ato.", answer: false },
+        { question: "O princípio da proporcionalidade exige que as medidas tomadas pela Administração sejam adequadas, necessárias e equilibradas.", answer: true },
+        { question: "A expropriação por utilidade pública consiste na privação da propriedade privada, mediante o pagamento de uma justa indemnização.", answer: true },
+        { question: "O nepotismo, que consiste no favorecimento de parentes, é uma prática contrária à ética e à imparcialidade na função pública.", answer: true },
+      ]
+    },
+    {
+      section: "Cultura Geral (Angola e Mundo)",
+      questions: [
+        { question: "Agostinho Neto foi o primeiro Presidente de Angola.", answer: true },
+        { question: "O rio Kwanza é o rio mais longo que corre inteiramente em território angolano.", answer: true },
+        { question: "A UNESCO é a organização das Nações Unidas para a Educação, a Ciência e a Cultura.", answer: true },
+        { question: "A província de Luanda é a que tem a maior densidade populacional em Angola.", answer: true },
+        { question: "O Acordo de Alvor, assinado em 1975, estabeleceu as bases para a partilha de poder entre os movimentos de libertação e Portugal.", answer: true },
+        { question: "A Welwitschia Mirabilis, uma planta desértica, é um dos símbolos nacionais de Angola.", answer: false },
+        { question: "O kwanza é a moeda oficial de Angola desde a independência.", answer: false },
+        { question: "A SADC (Comunidade para o Desenvolvimento da África Austral) é uma organização de integração regional da qual Angola faz parte.", answer: true },
+        { question: "O Monte Moco, localizado na província do Huambo, é o ponto mais alto de Angola.", answer: true },
+        { question: "A 'Pensadora' é uma famosa escultura angolana, símbolo da cultura Lunda-Tchokwe.", answer: true },
+      ]
+    }];
+    
+    let currentSectionIndex = 0;
+    let currentQuestionIndex = 0;
+    let userAnswers = [];
+    
+    const quizContainer = document.getElementById('quiz-container');
+    const resultsContainer = document.getElementById('results-container');
+    
+    function renderQuestion() {
+      quizContainer.innerHTML = '';
+      const section = quizData[currentSectionIndex];
+      const questionData = section.questions[currentQuestionIndex];
+      
+      const totalAnswered = userAnswers.length;
+      const totalQuestions = quizData.reduce((sum, s) => sum + s.questions.length, 0);
+      const progress = (totalAnswered / totalQuestions) * 100;
+      
+      const questionElement = document.createElement('div');
+      questionElement.innerHTML = `
+                <div class="mb-6">
+                    <div style="display: flex; justify-content: space-between; align-items: center;" class="mb-2">
+                         <h2 style="font-size: 1.25rem; font-weight: 700; color: #2563eb;">${section.section}</h2>
+                         <span style="font-size: 0.875rem; font-weight: 600; color: #6b7280;">${currentQuestionIndex + 1} / ${section.questions.length}</span>
+                    </div>
+                    <!-- BARRA DE PROGRESSO COM ESTILOS INTERNOS -->
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-inner" style="width: ${progress}%"></div>
+                    </div>
+                </div>
+
+                <p style="font-size: 1.25rem; color: #1f2937; min-height: 100px;" class="mb-8">${questionData.question}</p>
+                
+                <div class="button-container">
+                    <button onclick="selectAnswer(true)" class="button button-green">Verdadeiro</button>
+                    <button onclick="selectAnswer(false)" class="button button-red">Falso</button>
+                </div>
+            `;
+      quizContainer.appendChild(questionElement);
+    }
+    
+    function selectAnswer(answer) {
+      const section = quizData[currentSectionIndex];
+      userAnswers.push({
+        section: section.section,
+        userAnswer: answer,
+        correctAnswer: section.questions[currentQuestionIndex].answer
+      });
+      
+      currentQuestionIndex++;
+      if (currentQuestionIndex >= section.questions.length) {
+        currentQuestionIndex = 0;
+        currentSectionIndex++;
+      }
+      
+      if (currentSectionIndex >= quizData.length) {
+        showResults();
+      } else {
+        renderQuestion();
+      }
+    }
+    
+    function showResults() {
+      quizContainer.classList.add('hidden');
+      resultsContainer.classList.remove('hidden');
+      
+      let totalCorrect = 0;
+      const sectionResults = {};
+      quizData.forEach(s => {
+        sectionResults[s.section] = { correct: 0, total: s.questions.length };
+      });
+      
+      userAnswers.forEach(answer => {
+        if (answer.userAnswer === answer.correctAnswer) {
+          totalCorrect++;
+          sectionResults[answer.section].correct++;
+        }
+      });
+      
+      const totalQuestions = userAnswers.length;
+      const percentage = totalQuestions > 0 ? (totalCorrect / totalQuestions) * 100 : 0;
+      const finalGrade = (totalCorrect / totalQuestions) * 20;
+      
+      document.getElementById('final-grade').textContent = `${finalGrade.toFixed(2)} Valores`;
+      document.getElementById('total-percentage').textContent = `(${percentage.toFixed(1)}% de acerto - ${totalCorrect} de ${totalQuestions} correctas)`;
+      
+      const detailedResultsContainer = document.getElementById('detailed-results');
+      detailedResultsContainer.innerHTML = '';
+      
+      for (const sectionName in sectionResults) {
+        const result = sectionResults[sectionName];
+        const sectionGrade = (result.correct / result.total) * 20;
+        
+        const resultElement = document.createElement('div');
+        resultElement.className = 'detailed-result-card';
+        resultElement.innerHTML = `
+                    <h3 style="font-weight: 700; font-size: 1.125rem; color: #1f2937;">${sectionName}</h3>
+                    <p style="font-size: 1.5rem; font-weight: 600; color: ${sectionGrade >= 10 ? '#16a34a' : '#dc2626'};">${sectionGrade.toFixed(2)} Valores</p>
+                    <p style="font-size: 0.875rem; color: #6b7280;">(${result.correct} de ${result.total} correctas)</p>
+                `;
+        detailedResultsContainer.appendChild(resultElement);
+      }
+    }
+    
+    function restartQuiz() {
+      currentSectionIndex = 0;
+      currentQuestionIndex = 0;
+      userAnswers = [];
+      resultsContainer.classList.add('hidden');
+      quizContainer.classList.remove('hidden');
+      renderQuestion();
+    }
+    
+    window.onload = renderQuestion;
+  </script>
+  
+</body>
+
+</html>
