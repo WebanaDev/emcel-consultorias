@@ -1,192 +1,483 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EmCel | Login Page</title>
-    <!-- Inclui o Tailwind CSS via CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>E-book: IA Aplicada aos Estudos - Domine a Universidade!</title>
+    <meta name="description" content="Descubra as fórmulas secretas de IA (ChatGPT, Gemini, etc.) para acelerar seus estudos, escrever trabalhos perfeitos e ter tempo livre na universidade.">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
+        /* Variáveis CSS */
+        :root {
+            --primary-color: #2e66ff; /* Azul vibrante */
+            --secondary-color: #ffc107; /* Amarelo/Dourado do Destaque */
+            --dark-bg: #1a1a2e; /* Fundo escuro moderno */
+            --light-text: #ffffff;
+            --card-bg: #2a2a40;
+            --success-color: #4CAF50;
+            --font-family: 'Poppins', sans-serif;
+        }
+
+        /* Reset Básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6;
+            font-family: var(--font-family);
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Estrutura */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Botão CTA Flutuante */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background-color: var(--success-color);
+            color: var(--light-text);
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.05);
+            background-color: #45a049;
+        }
+
+        .whatsapp-float span {
+            margin-left: 8px;
+        }
+
+        /* Cabeçalho/Hero Section */
+        #hero {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #0c0c16 100%);
+            border-bottom: 5px solid var(--primary-color);
+        }
+
+        .hero-content h1 {
+            font-size: 3.5em;
+            font-weight: 800;
+            margin-bottom: 10px;
+            line-height: 1.1;
+        }
+
+        .hero-content h1 .highlight {
+            color: var(--secondary-color);
+            text-shadow: 0 0 10px rgba(255, 193, 7, 0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.4em;
+            font-weight: 300;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.8;
+        }
+
+        .ebook-image img {
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            margin-top: 30px;
+            transition: transform 0.5s ease;
+        }
+
+        .ebook-image img:hover {
+            transform: translateY(-5px) scale(1.02);
+        }
+
+        /* Botão Principal */
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 15px 40px;
+            font-size: 1.5em;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 0 5px 20px rgba(46, 102, 255, 0.5);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .cta-button:hover {
+            background-color: #1f50e0;
+            transform: translateY(-2px);
+        }
+
+        /* Preço Destaque */
+        .price-box {
+            margin-top: 15px;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+
+        .price-box .old-price {
+            text-decoration: line-through;
+            opacity: 0.6;
+            margin-right: 10px;
+        }
+
+        .price-box .new-price {
+            color: var(--secondary-color);
+            font-size: 1.4em;
+            font-weight: 800;
+        }
+
+        /* Seção de Dor/Problema */
+        #pain-points {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        #pain-points h2 {
+            font-size: 2.5em;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+        }
+
+        .pain-list {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .pain-item {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            width: 300px;
+            text-align: left;
+            border-left: 5px solid var(--secondary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .pain-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .pain-item h3 {
+            font-weight: 700;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        /* Seção de Conteúdo */
+        #content-preview {
+            padding: 80px 0;
+            background-color: #131320;
+        }
+
+        #content-preview h2 {
+            font-size: 2.8em;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--light-text);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            border: 1px solid rgba(46, 102, 255, 0.3);
+        }
+
+        .feature-card .icon {
+            font-size: 2em;
+            color: var(--primary-color);
+            flex-shrink: 0;
+        }
+
+        .feature-card h3 {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 5px;
+        }
+
+        /* Seção de Bônus (Gatilho de Escassez) */
+        #bonus-section {
+            padding: 60px 0;
+            text-align: center;
+            background-color: var(--dark-bg);
+        }
+
+        #bonus-section h2 {
+            font-size: 2.5em;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+
+        .timer {
+            font-size: 3em;
+            font-weight: 800;
+            margin: 20px 0;
+            color: var(--primary-color);
+        }
+
+        /* Seção de Testemunhos */
+        #testimonials {
+            padding: 80px 0;
+            background-color: #131320;
+        }
+
+        #testimonials h2 {
+            font-size: 2.8em;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--light-text);
+        }
+
+        .testimonial-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .testimonial-card {
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 10px;
+            max-width: 350px;
+            position: relative;
+            border-top: 5px solid var(--secondary-color);
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        /* Rodapé Final */
+        #final-cta {
+            padding: 60px 0;
+            text-align: center;
+            background-color: var(--primary-color);
+        }
+
+        #final-cta h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5em;
+            }
+
+            .hero-content p {
+                font-size: 1.1em;
+            }
+
+            #pain-points h2, #content-preview h2, #testimonials h2, #final-cta h2 {
+                font-size: 2em;
+            }
+
+            .pain-item {
+                width: 100%;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-button {
+                font-size: 1.3em;
+                padding: 12px 30px;
+            }
         }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen bg-gray-100">
-    <div class="w-full max-w-md bg-white p-8 rounded-2xl shadow-xl transition-all duration-300">
-        <!-- Título principal -->
-        <h1 id="main-title" class="text-3xl font-bold text-center text-gray-800 mb-6">Cadastre-se</h1>
-        
-        <!-- Formulário de Cadastro -->
-        <form id="register-form" class="space-y-6">
-            <div>
-                <label for="register-name" class="block text-sm font-medium text-gray-700">Nome Completo</label>
-                <input type="text" id="register-name" name="name" required
-                       class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 transition-colors">
-            </div>
-            <div>
-                <label for="register-email" class="block text-sm font-medium text-gray-700">Email</label>
-                <input type="email" id="register-email" name="email" required
-                       class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 transition-colors">
-            </div>
-            <div>
-                <label for="register-password" class="block text-sm font-medium text-gray-700">Senha</label>
-                <input type="password" id="register-password" name="password" required
-                       class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 transition-colors">
-            </div>
-            <div>
-                <button type="submit"
-                        class="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
-                    Cadastrar
-                </button>
-            </div>
-        </form>
+<body>
 
-        <!-- Formulário de Login (oculto por padrão) -->
-        <form id="login-form" class="space-y-6 hidden">
-            <div>
-                <label for="login-email" class="block text-sm font-medium text-gray-700">Email</label>
-                <input type="email" id="login-email" name="email" required
-                       class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 transition-colors">
-            </div>
-            <div>
-                <label for="login-password" class="block text-sm font-medium text-gray-700">Senha</label>
-                <input type="password" id="login-password" name="password" required
-                       class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 transition-colors">
-            </div>
-            <div>
-                <button type="submit"
-                        class="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors">
-                    Entrar
-                </button>
-            </div>
-        </form>
+    <a href="[SEU_LINK_DO_WHATSAPP_AQUI]" target="_blank" class="whatsapp-float">
+        🚀
+        <span>QUERO DOMINAR A IA AGORA!</span>
+    </a>
 
-        <!-- Container para mensagens de feedback -->
-        <div id="message-box" class="mt-4 p-3 text-center rounded-md text-sm font-medium" style="display: none;"></div>
-        
-        <!-- Botão para alternar entre formulários -->
-        <div class="text-center mt-6">
-            <button id="toggle-form" class="text-blue-600 hover:text-blue-800 transition-colors duration-200">
-                Já tem uma conta? Clique aqui para fazer login.
-            </button>
+    <section id="hero">
+        <div class="container hero-content">
+            <h1>PARE DE SOFRER. Use a <span class="highlight">Inteligência Artificial</span> para Arrasar na Universidade!</h1>
+            <p>Descubra as **Fórmulas Secretas (Prompts)** para fazer o ChatGPT e Gemini escreverem **Trabalhos Nota 10** em minutos e, finalmente, ter tempo livre.</p>
+            
+            <div class="ebook-image">
+                <img src="/ebook-cover.png" alt="Capa do Ebook IA Aplicada aos Estudos">
+            </div>
+
+            <div class="price-box">
+                De <span class="old-price">Kz 10.000</span> por apenas:
+                <div class="new-price">Kz 5.000 HOJE!</div>
+            </div>
+
+            <a href="[SEU_LINK_DO_WHATSAPP_AQUI]" class="cta-button" target="_blank">
+                COMPRAR E-BOOK VIA WHATSAPP (Kz 5.000)
+            </a>
+            <p style="margin-top: 10px; font-size: 0.9em; opacity: 0.7;">Oferta Exclusiva para os 50 Primeiros Compradores!</p>
         </div>
-    </div>
+    </section>
+
+    <section id="pain-points">
+        <div class="container">
+            <h2>Você se identifica com algum destes problemas?</h2>
+            <div class="pain-list">
+                <div class="pain-item">
+                    <h3>❌ Noites Sem Dormir</h3>
+                    <p>Fica até 3h da manhã digitando e revisando trabalhos que podiam estar prontos em 30 minutos.</p>
+                </div>
+                <div class="pain-item">
+                    <h3>❌ Bloqueio Criativo</h3>
+                    <p>Perde horas olhando para a tela sem saber como começar um TCC ou um artigo científico.</p>
+                </div>
+                <div class="pain-item">
+                    <h3>❌ Notas Medíocres</h3>
+                    <p>Sabe o conteúdo, mas não sabe como estruturar e apresentar o trabalho de forma impactante.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="content-preview">
+        <div class="container">
+            <h2>O que você vai DESBLOQUEAR com este E-book:</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <span class="icon">✨</span>
+                    <div>
+                        <h3>Fórmulas Mágicas (Os Melhores Prompts)</h3>
+                        <p>Aprenda a dar os comandos exatos que transformam o ChatGPT e Gemini em seus assistentes pessoais de escrita.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <span class="icon">🚀</span>
+                    <div>
+                        <h3>TCC e Artigos 5x Mais Rápidos</h3>
+                        <p>Métodos passo a passo para gerar esboços, resumos e bibliografias preliminares em questão de minutos, não semanas.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <span class="icon">🎨</span>
+                    <div>
+                        <h3>Slides que Impressionam (Canva + Gamma)</h3>
+                        <p>Deixe o PowerPoint chato de lado. Crie apresentações profissionais e visuais que garantem pontos extras de forma fácil.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <span class="icon">⏱️</span>
+                    <div>
+                        <h3>O Segredo do Tempo Livre</h3>
+                        <p>Automatize as tarefas de baixo valor para focar no que realmente importa: Aprender e, claro, curtir a vida universitária.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials">
+        <div class="container">
+            <h2>Quem Já Dominou a IA nos Estudos:</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p>"Eu perdia fins de semana inteiros. Depois do E-book, meu TCC avançou mais em 3 dias do que em 3 meses. As fórmulas de Prompt são insanas!"</p>
+                    <div class="testimonial-author">- Lucas S., Engenharia Civil (8º Semestre)</div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Finalmente consegui entender a diferença entre ChatGPT e Gemini para pesquisa. O e-book vale 10x mais pelo preço. Super recomendo a compra."</p>
+                    <div class="testimonial-author">- Mariana P., Direito (4º Semestre)</div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"As dicas de Canva e Gamma foram um divisor de águas! Minha nota no último seminário foi 10, e o professor até perguntou como fiz os slides!"</p>
+                    <div class="testimonial-author">- João V., Comunicação Social (2º Semestre)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="final-cta">
+        <div class="container">
+            <h2>SUA CHANCE DE MUDAR A VIDA UNIVERSITÁRIA É AGORA!</h2>
+            <p style="font-size: 1.3em; font-weight: 600;">Chega de desculpas. O custo de continuar perdendo tempo é muito maior que o valor deste E-book.</p>
+            
+            <a href="[SEU_LINK_DO_WHATSAPP_AQUI]" class="cta-button" target="_blank" style="background-color: var(--secondary-color); color: var(--dark-bg); box-shadow: 0 5px 20px rgba(255, 193, 7, 0.7);">
+                GARANTIR MEU E-BOOK POR Kz 5.000!
+            </a>
+            <p style="margin-top: 15px; font-size: 1em;">Clique no botão e diga **"IA"** para receber o link de pagamento exclusivo.</p>
+        </div>
+    </section>
 
     <script>
-        // CRUCIAL: Substitua este URL pelo URL da sua implantação do Apps Script
-        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbygMVYgCNLpYxnp8kpsjhBgc5pi0dXRsjscaKtuvDGb1mGXsrw5iNp7Ny0WLtteL8RDCw/exec';
-
-        const registerForm = document.getElementById('register-form');
-        const loginForm = document.getElementById('login-form');
-        const toggleButton = document.getElementById('toggle-form');
-        const mainTitle = document.getElementById('main-title');
-        const messageBox = document.getElementById('message-box');
-
-        // Função para mostrar mensagens de feedback
-        function showMessage(message, type) {
-            messageBox.textContent = message;
-            messageBox.style.display = 'block';
-            if (type === 'success') {
-                messageBox.className = 'mt-4 p-3 text-center rounded-md text-sm font-medium bg-green-100 text-green-700';
-            } else if (type === 'error') {
-                messageBox.className = 'mt-4 p-3 text-center rounded-md text-sm font-medium bg-red-100 text-red-700';
-            } else { // para "Carregando..."
-                messageBox.className = 'mt-4 p-3 text-center rounded-md text-sm font-medium bg-gray-200 text-gray-700';
-            }
-        }
-
-        // Função para alternar entre os formulários de login e cadastro
-        toggleButton.addEventListener('click', () => {
-            const isLogin = loginForm.classList.contains('hidden');
-            if (isLogin) {
-                // Alterne para login
-                registerForm.classList.add('hidden');
-                loginForm.classList.remove('hidden');
-                mainTitle.textContent = 'Login';
-                toggleButton.textContent = 'Não tem uma conta? Clique aqui para se cadastrar.';
-            } else {
-                // Alterne para cadastro
-                loginForm.classList.add('hidden');
-                registerForm.classList.remove('hidden');
-                mainTitle.textContent = 'Cadastre-se';
-                toggleButton.textContent = 'Já tem uma conta? Clique aqui para fazer login.';
-            }
-            messageBox.style.display = 'none'; // Limpa a mensagem ao alternar
-        });
-
-        // Manipula o envio do formulário de cadastro
-        registerForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            showMessage('Aguarde um momento...', 'info');
-
-            const name = document.getElementById('register-name').value;
-            const email = document.getElementById('register-email').value;
-            const password = document.getElementById('register-password').value;
-
-            const payload = {
-                action: 'register',
-                name: name,
-                email: email,
-                password: password
-            };
-
-            try {
-                const response = await fetch(APPS_SCRIPT_URL, {
-                    method: 'POST',
-                    body: JSON.stringify(payload),
-                    headers: { 'Content-Type': 'application/json' }
-                });
-                const result = await response.json();
-                
-                if (result.status === 'success') {
-                    showMessage(result.message, 'success');
-                    registerForm.reset();
-                } else {
-                    showMessage(result.message, 'error');
+        // Simulação de pop-up de intenção de saída (Gatilho de última chance)
+        document.addEventListener("mouseleave", function(e) {
+            if (e.clientY < 10) {
+                const popUp = document.getElementById('exit-popup');
+                if (popUp) {
+                    // Simplesmente garante que o botão de WhatsApp fique visível e piscando
+                    const floatBtn = document.querySelector('.whatsapp-float');
+                    if (floatBtn) {
+                        floatBtn.style.animation = 'pulse 1s infinite';
+                    }
                 }
-            } catch (error) {
-                console.error('Erro:', error);
-                showMessage('Houve um erro de conexão. Tente novamente.', 'error');
             }
         });
 
-        // Manipula o envio do formulário de login
-        loginForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            showMessage('Carregando...', 'info');
-
-            const email = document.getElementById('login-email').value;
-            const password = document.getElementById('login-password').value;
-
-            const payload = {
-                action: 'login',
-                email: email,
-                password: password
-            };
-
-            try {
-                const response = await fetch(APPS_SCRIPT_URL, {
-                    method: 'POST',
-                    body: JSON.stringify(payload),
-                    headers: { 'Content-Type': 'application/json' }
-                });
-                const result = await response.json();
-
-                if (result.status === 'success') {
-                    // Simulação de login bem-sucedido
-                    showMessage(`Bem-vindo, ${result.user.name}!`, 'success');
-                    loginForm.reset();
-                    // Em um app real, você redirecionaria o usuário para a página de perfil aqui.
-                } else {
-                    showMessage(result.message, 'error');
-                }
-            } catch (error) {
-                console.error('Erro:', error);
-                showMessage('Houve um erro de conexão. Tente novamente.', 'error');
+        // Efeito de Pulsar no Botão Flutuante (CSS Keyframe para `pulse` deve ser adicionado no `<style>`)
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes pulse {
+                0% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7); }
+                70% { box-shadow: 0 0 0 20px rgba(76, 175, 80, 0); }
+                100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
             }
-        });
+        `;
+        document.head.appendChild(style);
+        document.querySelector('.whatsapp-float').style.animation = 'pulse 2s infinite';
     </script>
+
 </body>
 </html>
