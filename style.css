@@ -51,7 +51,7 @@ body {
 }
 
 .hero {
-  background: url("img/emcel_bg01.jpeg");
+  background: url("img/hero-bg.png");
   background-size: cover;
   height: 100vh;
   width: 100%;
