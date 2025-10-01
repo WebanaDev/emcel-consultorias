@@ -55,7 +55,7 @@ body {
   background-size: cover;
   /* 4. POSICIONAMENTO: Define onde o corte deve acontecer */
   /* Este é o segredo para mostrar a parte mais importante da imagem */
-  background-position: left bottom; 
+  background-position: bottom; 
     
   /* 5. FIXAÇÃO (Opcional, mas recomendado para efeito visual) */
   background-repeat: no-repeat;
